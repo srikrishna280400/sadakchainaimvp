@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
@@ -21,6 +21,11 @@ export function RegisterForm({ onRegisterSuccess, onSwitchToLogin }: RegisterFor
   const [loading, setLoading] = useState(false);
 
   const isDev = import.meta.env.MODE === 'development';
+
+  useEffect(() => {
+    document.body.classList.add('auth-screen');
+    return () => document.body.classList.remove('auth-screen');
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -149,81 +154,81 @@ export function RegisterForm({ onRegisterSuccess, onSwitchToLogin }: RegisterFor
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-blue-50 to-indigo-100">
-      <Card className="w-full max-w-md">
-        <CardHeader className="space-y-1">
-          <CardTitle className="text-center">Create an account</CardTitle>
-          <CardDescription className="text-center">Enter your details to register</CardDescription>
+    <div className="h-screen w-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 overflow-hidden p-0 m-0">
+      <Card className="w-full max-w-md mx-3 sm:mx-4 shadow-lg">
+        <CardHeader className="space-y-0.5 pb-2 sm:pb-4">
+          <CardTitle className="text-center text-lg sm:text-2xl">Create an Account</CardTitle>
+          <CardDescription className="text-center text-xs sm:text-sm">Enter your Details to Register</CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="name">Name</Label>
+          <form onSubmit={handleSubmit} className="space-y-2 sm:space-y-4">
+            <div className="space-y-1">
+              <Label htmlFor="name" className="text-xs sm:text-sm">Name</Label>
               <div className="relative">
-                <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                <User className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
                 <Input
                   id="name"
                   type="text"
                   placeholder="John Doe"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="pl-10"
+                  className="pl-10 h-8 sm:h-10 text-xs sm:text-sm"
                 />
               </div>
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+            <div className="space-y-1">
+              <Label htmlFor="email" className="text-xs sm:text-sm">Email</Label>
               <div className="relative">
-                <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                <Mail className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
                 <Input
                   id="email"
                   type="email"
                   placeholder="name@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="pl-10"
+                  className="pl-10 h-8 sm:h-10 text-xs sm:text-sm"
                 />
               </div>
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+            <div className="space-y-1">
+              <Label htmlFor="password" className="text-xs sm:text-sm">Password</Label>
               <div className="relative">
-                <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                <Lock className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
                 <Input
                   id="password"
                   type="password"
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="pl-10"
+                  className="pl-10 h-8 sm:h-10 text-xs sm:text-sm"
                 />
               </div>
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="confirmPassword">Confirm Password</Label>
+            <div className="space-y-1">
+              <Label htmlFor="confirmPassword" className="text-xs sm:text-sm">Confirm Password</Label>
               <div className="relative">
-                <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                <Lock className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
                 <Input
                   id="confirmPassword"
                   type="password"
                   placeholder="••••••••"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="pl-10"
+                  className="pl-10 h-8 sm:h-10 text-xs sm:text-sm"
                 />
               </div>
             </div>
 
             {error && (
-              <div className="text-red-500 text-sm bg-red-50 p-3 rounded-md border border-red-200">
+              <div className="text-red-500 text-xs sm:text-sm bg-red-50 p-2 sm:p-3 rounded-md border border-red-200">
                 {error}
               </div>
             )}
 
-            <Button type="submit" className="w-full" disabled={loading}>
+            <Button type="submit" className="w-full h-8 sm:h-10 text-xs sm:text-base" disabled={loading}>
               {loading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -234,7 +239,7 @@ export function RegisterForm({ onRegisterSuccess, onSwitchToLogin }: RegisterFor
               )}
             </Button>
 
-            <div className="text-center text-sm">
+            <div className="text-center text-xs sm:text-sm pt-1">
               Already have an account?{' '}
               <button
                 type="button"

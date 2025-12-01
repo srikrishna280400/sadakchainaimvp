@@ -48,96 +48,91 @@ export function LocationPermission({ userId, onLocationGranted }: LocationPermis
     }
   }
 
- // LocationPermission: replace existing handleRequestLocation
-const handleRequestLocation = () => {
-  setBusy(true);
-  setStatus('Requesting location...');
-  if ('geolocation' in navigator) {
-    navigator.geolocation.getCurrentPosition(
-      async (position) => {
-        try {
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
-          setStatus('Location granted!');
+  const handleRequestLocation = () => {
+    setBusy(true);
+    setStatus('Requesting location...');
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          try {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            setStatus('Location granted!');
 
-          // Optionally reverse-geocode here (or LocationSearch will confirm)
-          // We'll persist that the user granted permission:
-          localStorage.setItem('locationGranted', 'true');
+            localStorage.setItem('locationGranted', 'true');
 
-          // If you can compute pincode here, persist it; otherwise leave for LocationSearch
+            const fallbackPincode = '400001';
+            localStorage.setItem('locationPincode', fallbackPincode);
+
+            setBusy(false);
+            onLocationGranted(fallbackPincode);
+          } catch (e) {
+            console.error('Location handler error', e);
+            setStatus('Failed to read location');
+            setBusy(false);
+          }
+        },
+        (error) => {
+          console.warn('Location denied/failed', error);
+          setStatus('Location denied: ' + error.message);
+          localStorage.setItem('locationGranted', 'false');
+          setBusy(false);
           const fallbackPincode = '400001';
-          localStorage.setItem('locationPincode', fallbackPincode);
-
-          // small delay to show status
-          setBusy(false);
           onLocationGranted(fallbackPincode);
-        } catch (e) {
-          console.error('Location handler error', e);
-          setStatus('Failed to read location');
-          setBusy(false);
-        }
-      },
-      (error) => {
-        console.warn('Location denied/failed', error);
-        setStatus('Location denied: ' + error.message);
-        // do NOT set locationGranted=true on denial — set false or leave unset
-        localStorage.setItem('locationGranted', 'false');
-        setBusy(false);
-        // You may want to send a fallback pincode so flow continues:
-        const fallbackPincode = '400001';
-        onLocationGranted(fallbackPincode);
-      },
-      { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
-    );
-  } else {
-    setStatus('Geolocation not supported');
-    localStorage.setItem('locationGranted', 'false');
-    setBusy(false);
-    const fallbackPincode = '400001';
-    onLocationGranted(fallbackPincode);
-  }
-};
+        },
+        { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
+      );
+    } else {
+      setStatus('Geolocation not supported');
+      localStorage.setItem('locationGranted', 'false');
+      setBusy(false);
+      const fallbackPincode = '400001';
+      onLocationGranted(fallbackPincode);
+    }
+  };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-blue-50 to-indigo-100">
-      <Card className="w-full max-w-md">
-        <CardHeader className="text-center">
-          <div className="mx-auto mb-4 w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
-            <MapPin className="h-6 w-6 text-blue-600" />
+    <div className="w-full h-full flex items-center justify-center">
+      <Card className="w-full max-w-md mx-3 sm:mx-4 shadow-lg">
+        <CardHeader className="space-y-0.5 pb-3 sm:pb-4">
+          <div className="mx-auto mb-2 sm:mb-4 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-100 flex items-center justify-center">
+            <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
           </div>
-          <CardTitle>Location Access</CardTitle>
-          <CardDescription>We need your location to show roads and landmarks in your area</CardDescription>
+          <CardTitle className="text-center text-lg sm:text-2xl">Location Access</CardTitle>
+          <CardDescription className="text-center text-xs sm:text-sm">
+            We need your location to show roads and landmarks in your area
+          </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <Alert>
-            <AlertCircle className="h-4 w-4" />
-            <AlertDescription>
-              Your location will be used to find nearby roads and help you report their condition
-            </AlertDescription>
-          </Alert>
+        <CardContent>
+          <div className="space-y-2 sm:space-y-4">
+            <Alert className="text-xs sm:text-sm">
+              <AlertCircle className="h-4 w-4" />
+              <AlertDescription>
+                Your location will be used to find nearby roads and help you report their condition
+              </AlertDescription>
+            </Alert>
 
-          <div>
-            <Button onClick={handleRequestLocation} className="w-full" disabled={busy}>
+            <Button 
+              onClick={handleRequestLocation} 
+              className="w-full h-8 sm:h-10 text-xs sm:text-base" 
+              disabled={busy}
+            >
               <MapPin className="mr-2 h-4 w-4" />
               {busy ? 'Working...' : 'Share Location'}
             </Button>
-          </div>
 
-          {status && (
-            <div
-              style={{
-                marginTop: 12,
-                textAlign: 'center',
-                fontWeight: 500,
-                color:
-                  status.startsWith('Location denied') || status.startsWith('Failed') ? 'red' :
-                  status.startsWith('Location granted') || status.startsWith('Location saved') ? 'green' :
-                  'blue'
-              }}
-            >
-              {status}
-            </div>
-          )}
+            {status && (
+              <div className={`text-center text-xs sm:text-sm font-medium ${
+                status.startsWith('Location denied') || status.startsWith('Failed')
+                  ? 'text-red-500'
+                  : status.startsWith('Location granted') || status.startsWith('Location saved')
+                  ? 'text-green-600'
+                  : 'text-blue-600'
+              }`}>
+                {status}
+              </div>
+            )}
+          </div>
         </CardContent>
       </Card>
     </div>

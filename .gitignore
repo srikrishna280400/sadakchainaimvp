@@ -1,1 +1,12 @@
 node_modules
+# Local environment files (ALWAYS IGNORE)
+.env
+.env.local
+.env.local.admin
+.env.*.local
+
+# Vercel-specific cache/build directories
+.vercel
+/node_modules
+/dist
+/build

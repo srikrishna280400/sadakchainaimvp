@@ -61,7 +61,7 @@
             "dev": "vite",
             "build": "vite build",
             "preview": "vite preview --port 3000",
-            "tunnel": "npx localtunnel --port 3000 --subdomain civitasai-in",
+            "tunnel": "npx localtunnel --port 3000 --subdomain sadakchainai-in",
             "dev:mobile": "concurrently \"npm run dev\" \"wait-on http://localhost:5173 && npm run tunnel\""
       }
 }

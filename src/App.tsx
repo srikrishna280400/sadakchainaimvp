@@ -200,28 +200,31 @@ const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
     <div className="h-screen w-screen flex flex-col bg-gradient-to-br from-blue-100 to-indigo-100 overflow-hidden">
       <div className="w-full h-[6px] bg-blue-600" />
       <div className="flex-1 flex items-center justify-center w-full h-full">
-        <div className="bg-white rounded-2xl shadow-2xl border border-blue-300 w-full max-w-6xl mx-2 md:mx-8 lg:mx-12 my-12 min-h-[400px] h-full flex flex-col">
-          <header className="w-full border-b border-blue-400 px-8 py-6 flex items-center justify-between">
-            <div className="font-bold text-xl">CivitasAI — RoadReports (MVP)</div>
-            <div className="text-sm text-gray-600 flex items-center gap-4">
-              {user ? (
-                <>
-                  <div className="truncate max-w-sm">Signed in: {user.email ?? userId}</div>
-                  <button
-                    onClick={handleLogout}
-                    className="text-sm px-4 py-2 bg-red-50 border rounded hover:bg-red-100"
-                  >
-                    Logout
-                  </button>
-                </>
-              ) : (
-                <div>Not signed in</div>
-              )}
-            </div>
-          </header>
+<div className="bg-white rounded-2xl shadow-2xl border border-blue-300 w-full max-w-6xl mx-2 md:mx-8 lg:mx-12 my-12 min-h-[400px] h-full flex flex-col overflow-hidden">
+  <header className="w-full border-b border-blue-400 px-3 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6 flex items-center justify-between gap-2 flex-shrink-0 min-h-[60px] overflow-hidden">
+  <div className="font-bold text-sm sm:text-base md:text-xl truncate min-w-0 flex-shrink">
+    SadakChainAI — Pilot (MVP)
+  </div>
+  <div className="text-xs sm:text-sm text-gray-600 flex items-center gap-2 sm:gap-3 flex-shrink-0">
+    {user ? (
+      <>
+        <div className="hidden md:block truncate max-w-[150px] lg:max-w-[200px]">
+          {user.email ?? userId}
+        </div>
+<button
+onClick={handleLogout}
+className="text-sm sm:text-base md:text-xl px-4 sm:px-3 py-1 sm:py-1.5 rounded-lg whitespace-nowrap bg-gray-800 text-white hover:bg-gray-900 border border-gray-800">
+Logout
+</button>
+      </>
+    ) : (
+<div className="text-sm sm:text-base md:text-xl whitespace-nowrap">Not Signed In</div>
+    )}
+  </div>
+</header>
 
-          <main className="w-full flex-1 flex flex-col items-center justify-center px-8 py-10 h-full">
-            {screen === 'register' && (
+<main className={`w-full flex-1 flex flex-col items-center justify-center h-full min-h-0 ${screen === 'report' ? 'p-0' : 'px-8 py-10'}`}>
+      {screen === 'register' && (
               <RegisterForm onRegisterSuccess={handleRegisterSuccess} onSwitchToLogin={handleSwitchToLogin} />
             )}
 
@@ -237,17 +240,15 @@ const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
               <LocationSearch userId={userId} onConfirmLocation={handleConfirmLocation} />
             )}
 
-            {screen === 'report' && selectedLocation && (
-              <div className="h-full w-full flex justify-center items-center">
-                <ReportScreen
-                  location={selectedLocation.location}
-                  pincode={selectedLocation.pincode}
-                  userId={userId}
-                  onLogout={handleLogout}
-                  onEditLocation={handleEditLocation}
-                />
-              </div>
-            )}
+{screen === 'report' && selectedLocation && (
+  <ReportScreen
+    location={selectedLocation.location}
+    pincode={selectedLocation.pincode}
+    userId={userId}
+    onLogout={handleLogout}
+    onEditLocation={handleEditLocation}
+  />
+)}
           </main>
         </div>
       </div>
