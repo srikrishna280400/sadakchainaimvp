@@ -57,7 +57,7 @@
     },
 
     server: {
-      host: '0.0.0.0',
+      host: true,
       port: 3000,
       open: true,
       strictPort: false,
@@ -67,8 +67,17 @@
     headers: {
       'Access-Control-Allow-Origin': '*'
     },  
-    allowedHosts: ['.loca.lt',
-      'fellow-mission-discovery-relatives.trycloudflare.com'
+    allowedHosts: [
+        'localhost',
+        '127.0.0.1',
+        '.loca.lt', // Existing entry
+        'https://encourage-showcase-strengthen-compliant.trycloudflare.com',
+        '*.trycloudflare.com' // <-- ADD THIS WILDCARD
     ], // allow all LocalTunnel subdomains
+    hmr: {
+        host: 'localhost', // <-- ADD/CHANGE THIS
+        port: 3000, // Ensure this matches your server port
+        overlay: false, // Keep this for stability
+    },
     },
   });

@@ -58,7 +58,7 @@
             "vite": "6.3.5"
       },
       "scripts": {
-            "dev": "vite",
+            "dev": "vite --host 0.0.0.0",
             "build": "vite build",
             "preview": "vite preview --port 3000",
             "tunnel": "npx localtunnel --port 3000 --subdomain sadakchainai-in",
