@@ -57,7 +57,7 @@
     },
 
     server: {
-      host: true,
+      host: '0.0.0.0',
       port: 3000,
       open: true,
       strictPort: false,
@@ -67,6 +67,8 @@
     headers: {
       'Access-Control-Allow-Origin': '*'
     },  
-    allowedHosts: ['.loca.lt'], // allow all LocalTunnel subdomains
+    allowedHosts: ['.loca.lt',
+      'fellow-mission-discovery-relatives.trycloudflare.com'
+    ], // allow all LocalTunnel subdomains
     },
   });

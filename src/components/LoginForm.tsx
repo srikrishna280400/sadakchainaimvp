@@ -113,14 +113,14 @@ export function LoginForm({ onLoginSuccess, onSwitchToRegister }: LoginFormProps
       <Card className="w-full max-w-md mx-3 sm:mx-4 shadow-lg">
         <CardHeader className="space-y-0.5 pb-3 sm:pb-4">
           <CardTitle className="text-center text-lg sm:text-2xl">Welcome Back!</CardTitle>
-          <CardDescription className="text-center text-xs sm:text-sm">Enter your Credentials to Login</CardDescription>
+          <CardDescription className="text-center text-xs sm:text-sm">Enter Your Credentials to Login</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-2 sm:space-y-4">
             <div className="space-y-1 sm:space-y-2">
               <Label htmlFor="email" className="text-xs sm:text-sm">Email</Label>
               <div className="relative">
-                <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+<Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" /> {/* FIX APPLIED */}
                 <Input
                   id="email"
                   type="email"
@@ -136,7 +136,7 @@ export function LoginForm({ onLoginSuccess, onSwitchToRegister }: LoginFormProps
             <div className="space-y-1 sm:space-y-2">
               <Label htmlFor="password" className="text-xs sm:text-sm">Password</Label>
               <div className="relative">
-                <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+<Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" /> {/* FIX APPLIED */}
                 <Input
                   id="password"
                   type="password"

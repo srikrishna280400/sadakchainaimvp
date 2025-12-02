@@ -5,7 +5,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/
 import { Label } from './ui/label';
 import { RadioGroup, RadioGroupItem } from './ui/radio-group';
 import { Questionnaire } from './Questionnaire';
+import { supabase } from '../supabaseClient';
 import { toast } from 'sonner';
+
 
 interface ReportScreenProps {
   location: string;
@@ -114,44 +116,117 @@ export function ReportScreen({
     }
   };
 
-  const handleSubmitReport = async () => {
-    if (!vote) {
-      toast.error('Please vote for the road condition');
-      return;
-    }
+ const handleSubmitReport = async () => {
+    if (!vote) {
+      toast.error('Please vote for the road condition');
+      return;
+    }
 
-    if (!userId) {
-      toast.error('Not logged in.');
-      return;
-    }
+    if (!userId) {
+      toast.error('Not logged in.');
+      return;
+    }
 
-    setIsSubmitting(true);
+    setIsSubmitting(true);
 
-    const filesToSave = filesNames.length ? filesNames : (files.length ? files.map(f => f.name) : []);
-    const qsnAnsweredBool = !!questionnaireCompleted;
-    const userPincode = localStorage.getItem('locationPincode') || null;
-    const reportPincode = pincode || null;
-    const finalLocation = location || null;
+    // --- Prepare Metadata & Identifiers ---
+    const qsnAnsweredBool = !!questionnaireCompleted;
+    const userPincode = localStorage.getItem('locationPincode') || null;
+    const reportPincode = pincode || null;
+    const finalLocation = location || null;
+    
+    // Use the actual userId or a fallback for the storage path
+    const userIdentifier = userId || 'anon_session';
+    const storageBucket = 'reports_media'; // Ensure this bucket exists
 
-    try {
-      // Simulated submission - replace with actual Supabase logic
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      setIsSubmitting(false);
-      toast.success('Report submitted successfully!');
-      
-      // Clear form
-      setFiles([]);
-      setFilesNames([]);
-      setVote('');
-      setQuestionnaireCompleted(false);
-      clearDraft();
-    } catch (e: any) {
-      setIsSubmitting(false);
-      console.error('Submit report exception', e);
-      toast.error('Failed to submit report: ' + (e?.message || String(e)));
-    }
-  };
+    try {
+        // --- Step A: File Upload and Public URL Generation (ALWAYS RUNS) ---
+        const uploadedFileUrls: string[] = []; // Array to hold public URLs
+
+        for (const file of files) {
+            // Generate a unique path using the userIdentifier
+            const uniqueFileName = `${userIdentifier}/${reportId || 'draft'}/${Date.now()}-${file.name}`;
+            
+            // 1. Upload the file
+            const { error: uploadError } = await supabase.storage
+                .from(storageBucket)
+                .upload(uniqueFileName, file,
+                  { 
+        cacheControl: '3600', 
+        upsert: false, 
+        // This might resolve issues in some environments:
+        contentType: file.type, 
+        // Ensure the browser sends the correct content type
+    });
+       
+
+            if (uploadError) {
+                console.error("Storage upload failed:", uploadError);
+                // NOTE: We continue even if one file fails, but show an error.
+                toast.error(`Failed to upload ${file.name}. Report saving, but missing media.`);
+            } else {
+                // 2. Get the public URL
+                const { data: publicUrlData } = supabase.storage
+                    .from(storageBucket)
+                    .getPublicUrl(uniqueFileName);
+                
+                if (publicUrlData?.publicUrl) {
+                     uploadedFileUrls.push(publicUrlData.publicUrl);
+                }
+            }
+        }
+
+        // --- Step B: Determine Target Table based on Confirmation Status ---
+        let isConfirmed = false;
+        const targetReportTable = 'reports_unconfirmed'; // Default to unconfirmed
+
+        if (userId) {
+            const { data: profileData } = await supabase
+                .from('profiles')
+                .select('email_confirmed')
+                .eq('id', userId)
+                .single();
+            
+            if (profileData?.email_confirmed === true) {
+                let isConfirmed = true;
+                let targetReportTable = 'reports'; // Change to confirmed table
+            }
+        }
+
+        // --- Step C: Prepare & Upsert Database Payload (Using Determined Table) ---
+        const reportPayload = {
+            id: userId, // Assuming 'id' is the primary key for upserting by user ID
+            files: uploadedFileUrls, // Contains the full web addresses
+            vote: vote,
+            qsn_answered: qsnAnsweredBool,
+            location: finalLocation,
+            report_pincode: reportPincode,
+            user_pincode: userPincode,
+        };
+
+        const { error: dbError } = await supabase
+            .from(targetReportTable)
+            .upsert([reportPayload], { onConflict: 'id' });
+
+        if (dbError) {
+            throw new Error(`Database update failed: ${dbError.message}`);
+        }
+        
+      setIsSubmitting(false);
+      toast.success('Report submitted successfully! Files and data saved.');
+      
+      // Clear form
+      setFiles([]);
+      setFilesNames([]);
+      setVote('');
+      setQuestionnaireCompleted(false);
+      clearDraft();
+    } catch (e: any) {
+      setIsSubmitting(false);
+      console.error('Submit report exception', e);
+      toast.error('Failed to submit report: ' + (e?.message || String(e)));
+    }
+  };
 
   return (
     <div className="w-full h-full overflow-y-auto">

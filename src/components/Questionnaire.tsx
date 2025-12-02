@@ -37,7 +37,7 @@ const questions = [
   },
   {
     id: 'q2',
-    question: 'What type of vehicle do you use the MOST on this road?',
+    question: 'What vehicle do you use the MOST on this road?',
     options: [
       'Car',
       'Motorcycle',
@@ -244,17 +244,34 @@ export function Questionnaire({
     }
 
     // Step 3: Save Questionnaire Responses
-    const answersPayload = { ...answers, comments: additionalComments || null };
+// --- START MODIFICATION: Prepare individual answer columns (ans1, ans2, etc.) ---
+    const individualAnswersPayload: Record<string, any> = {};
     
-    // This payload contains all data needed for saving the questionnaire responses
-    const payloadCommon = {
-      report_id: currentReportId, // Use the ID we just created or the existing one
-      user_id: actualUserId,
-      answers: answersPayload,
-      comments: additionalComments || null,
-      created_at: new Date().toISOString(),
-      // The 'meta' field was removed here as it caused a schema error.
-    };
+    questions.forEach((q, index) => {
+        const columnName = `ans${index + 1}`;
+        let value = answers[q.id];
+        
+        // Handle conversion of array answers (from checkbox) to a comma-separated string for TEXT column
+        if (q.type === 'checkbox' && Array.isArray(value)) {
+            value = value.join(', ');
+        } else if (!value) {
+             // Ensure unanswered radio/text fields default to an empty string for NOT NULL TEXT columns
+             value = '';
+        }
+        
+        individualAnswersPayload[columnName] = value;
+    });
+
+    // Step 3: Construct the final payload for the database
+// NOTE: The 'answers' column is REMOVED, replaced by individual columns.
+const payloadCommon = {
+report_id: currentReportId, 
+user_id: actualUserId,
+      ...individualAnswersPayload, // This spreads ans1, ans2, ans3, ans4, ans5
+comments: additionalComments || null,
+created_at: new Date().toISOString(),
+};
+    // --- END MODIFICATION ---
 
     try {
       if (isConfirmed) {
@@ -319,7 +336,7 @@ export function Questionnaire({
           if (storageKey) {
             localStorage.setItem(
               storageKey,
-              JSON.stringify({ answers: payloadCommon.answers, comments: payloadCommon.comments, saved_at: new Date().toISOString() })
+JSON.stringify({ answers: answers, comments: additionalComments, saved_at: new Date().toISOString() })
             );
           }
         } catch (e) {
@@ -385,9 +402,9 @@ export function Questionnaire({
                             }`}
                           >
                             {/* the actual RadioGroupItem remains for accessibility */}
-                            <RadioGroupItem value={option} id={id} />
-                            <Label htmlFor={id} className="cursor-pointer">
-                              {option} 
+                            <RadioGroupItem value={option} id={id} className="mr-[10px]" />
+<Label htmlFor={id} className="pl-2 cursor-pointer">
+                                  {option} 
                             </Label>
                           </div>
                         );
@@ -407,7 +424,7 @@ export function Questionnaire({
                             tabIndex={0}
                             onClick={() => handleCheckboxChange(question.id, option, !checked)}
                             onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleCheckboxChange(question.id, option, !checked); } }}
-                            className={`flex items-center rounded-lg border-2 p-2 md:p-3 transition-colors cursor-pointer ${
+                            className={`flex items-center gap-3 rounded-lg border-2 p-2 md:p-3 transition-colors cursor-pointer ${
                               checked ? 'border-red-500 bg-red-50' : 'border-red-200'
                             }`}
                           >
@@ -415,9 +432,10 @@ export function Questionnaire({
                               id={id}
                               checked={checked}
                               onCheckedChange={(c: any) => handleCheckboxChange(question.id, option, !!c)}
+className="data-[state=checked]:font-extrabold data-[state=checked]:text-xl" 
                             /> 
-                            <Label htmlFor={id} className="ml-3 cursor-pointer">
-                              {option}
+<Label htmlFor={id} className="cursor-pointer">                     
+           {option}
                             </Label>
                           </div>
                         );

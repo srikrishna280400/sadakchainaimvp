@@ -2111,3 +2111,33 @@ body {
 body.auth-screen {
   overflow: hidden;
 }
+
+/* Add this CSS rule to the very end of your index.css or global.css */
+/* Target: The label element immediately following a radix radio button or checkbox. */
+[data-state="checked"] + label,
+[data-state="unchecked"] + label {
+  /* This targets the label after the generic radix indicator */
+  margin-left: 8px !important;
+}
+
+/* Specific fix for the Radio Group Label (More reliable override) */
+/* Targets the label that is the adjacent sibling of the <button> element (RadioGroupItem) */
+[role="radiogroup"] .flex > button + label {
+  margin-left: 8px !important; 
+}
+
+
+/* Add this CSS rule to the very end of your index.css or global.css */
+/* Target: The internal SVG checkmark icon inside the checkbox when it is checked */
+.peer:checked ~ .data-\[state\=checked\] svg,
+[data-state="checked"] svg {
+    /* Increase the stroke width for a bolder, more professional appearance. 3px is a good start. */
+    stroke-width: 6px !important; 
+    /* Ensure the lines are clean */
+    stroke-linecap: round !important;
+}
+
+/* Fallback/additional selector for high specificity on the primary checkbox element */
+input[type="checkbox"]:checked + button svg {
+    stroke-width: 6px !important;
+}

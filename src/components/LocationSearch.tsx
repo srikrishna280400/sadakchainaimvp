@@ -175,7 +175,7 @@ export function LocationSearch({ userId, onConfirmLocation }: LocationSearchProp
 
   return (
     <div className="w-full h-full flex items-center justify-center overflow-y-auto py-4">
-      <Card className="w-full max-w-md mx-3 sm:mx-4 shadow-lg my-auto">
+      <Card className="w-full max-w-md mx-3 sm:mx-4 shadow-lg my-auto">``
         <CardHeader className="space-y-0.5 pb-3 sm:pb-4">
           <CardTitle className="text-center text-lg sm:text-2xl">Select Location</CardTitle>
           <CardDescription className="text-center text-xs sm:text-sm">
@@ -187,7 +187,7 @@ export function LocationSearch({ userId, onConfirmLocation }: LocationSearchProp
             <div className="space-y-1 sm:space-y-2">
               <Label htmlFor="location-search" className="text-xs sm:text-sm">Search Location</Label>
               <div className="relative">
-                <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" /> {/* FIX APPLIED */}
                 <Input
                   id="location-search"
                   type="text"

@@ -158,15 +158,15 @@ export function RegisterForm({ onRegisterSuccess, onSwitchToLogin }: RegisterFor
       <Card className="w-full max-w-md mx-3 sm:mx-4 shadow-lg">
         <CardHeader className="space-y-0.5 pb-2 sm:pb-4">
           <CardTitle className="text-center text-lg sm:text-2xl">Create an Account</CardTitle>
-          <CardDescription className="text-center text-xs sm:text-sm">Enter your Details to Register</CardDescription>
+          <CardDescription className="text-center text-xs sm:text-sm">Enter Your Details to Register</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-2 sm:space-y-4">
             <div className="space-y-1">
               <Label htmlFor="name" className="text-xs sm:text-sm">Name</Label>
               <div className="relative">
-                <User className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
-                <Input
+<User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />               
+<Input
                   id="name"
                   type="text"
                   placeholder="John Doe"
@@ -180,7 +180,7 @@ export function RegisterForm({ onRegisterSuccess, onSwitchToLogin }: RegisterFor
             <div className="space-y-1">
               <Label htmlFor="email" className="text-xs sm:text-sm">Email</Label>
               <div className="relative">
-                <Mail className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+<Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" /> {/* FIX APPLIED */}
                 <Input
                   id="email"
                   type="email"
@@ -195,7 +195,7 @@ export function RegisterForm({ onRegisterSuccess, onSwitchToLogin }: RegisterFor
             <div className="space-y-1">
               <Label htmlFor="password" className="text-xs sm:text-sm">Password</Label>
               <div className="relative">
-                <Lock className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+<Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" /> {/* FIX APPLIED */}
                 <Input
                   id="password"
                   type="password"
@@ -210,7 +210,7 @@ export function RegisterForm({ onRegisterSuccess, onSwitchToLogin }: RegisterFor
             <div className="space-y-1">
               <Label htmlFor="confirmPassword" className="text-xs sm:text-sm">Confirm Password</Label>
               <div className="relative">
-                <Lock className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+<Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" /> {/* FIX APPLIED */}
                 <Input
                   id="confirmPassword"
                   type="password"
