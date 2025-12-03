@@ -361,6 +361,8 @@ export function ReportScreen({
           </div>
         </div>
 
+<div className="h-96 shrink-0"></div>
+
         <Questionnaire
           open={showQuestionnaire}
           onOpenChange={setShowQuestionnaire}
