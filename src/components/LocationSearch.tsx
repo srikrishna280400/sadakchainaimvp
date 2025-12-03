@@ -175,7 +175,7 @@ export function LocationSearch({ userId, onConfirmLocation }: LocationSearchProp
 
   return (
     <div className="w-full h-full flex items-center justify-center overflow-y-auto py-4">
-      <Card className="w-full max-w-md mx-3 sm:mx-4 shadow-lg my-auto">``
+      <Card className="w-full max-w-md mx-3 sm:mx-4 shadow-lg my-auto">
         <CardHeader className="space-y-0.5 pb-3 sm:pb-4">
           <CardTitle className="text-center text-lg sm:text-2xl">Select Location</CardTitle>
           <CardDescription className="text-center text-xs sm:text-sm">

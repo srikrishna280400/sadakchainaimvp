@@ -199,8 +199,8 @@ const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col overflow-hidden" data-screen={screen}>
       <div className="w-full h-[6px] bg-blue-600" />
-<div className={`flex-1 flex w-full h-full ${screen === 'report' ? '' : 'items-center justify-center'}`}>
-<div className={`bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl shadow-2xl border border-blue-300 w-full max-w-6xl mx-2 md:mx-8 lg:mx-12 min-h-[400px] h-full flex flex-col overflow-hidden ${screen === 'report' ? 'my-0' : 'my-12'}`}>
+<div className={`flex-1 flex w-full h-full ${screen === 'report' ? '' : ''}`}>
+  <div className={`bg-white rounded-2xl shadow-2xl border border-blue-300 w-full max-w-6xl mx-2 md:mx-8 lg:mx-12 flex flex-col overflow-hidden ${screen === 'report' ? 'h-full my-0' : 'h-auto my-12'}`}>
     <header className="w-full border-b border-blue-400 px-3 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6 flex items-center justify-between gap-2 flex-shrink-0 min-h-[60px] overflow-hidden">
   <div className="font-bold text-sm sm:text-base md:text-xl truncate min-w-0 flex-shrink">
     SadakChainAI — Pilot (MVP)
