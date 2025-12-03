@@ -197,7 +197,7 @@ const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
   };
 
   return (
-    <div className="h-screen w-screen flex flex-col bg-gradient-to-br from-blue-100 to-indigo-100 overflow-hidden" data-screen={screen}>
+    <div className="min-h-screen w-full bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col overflow-hidden" data-screen={screen}>
       <div className="w-full h-[6px] bg-blue-600" />
 <div className={`flex-1 flex w-full h-full ${screen === 'report' ? '' : 'items-center justify-center'}`}>
 <div className={`bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl shadow-2xl border border-blue-300 w-full max-w-6xl mx-2 md:mx-8 lg:mx-12 min-h-[400px] h-full flex flex-col overflow-hidden ${screen === 'report' ? 'my-0' : 'my-12'}`}>
