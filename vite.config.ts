@@ -1,7 +1,6 @@
-
-  import { defineConfig } from 'vite';
-  import react from '@vitejs/plugin-react-swc';
-  import path from 'path';
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react-swc';
+import path from 'path';
 
   export default defineConfig({
     plugins: [react()],
@@ -57,7 +56,7 @@
     },
 
     server: {
-      host: true,
+      host: '0.0.0.0',
       port: 3000,
       open: true,
       strictPort: false,
@@ -71,7 +70,6 @@
         'localhost',
         '127.0.0.1',
         '.loca.lt', // Existing entry
-        'https://encourage-showcase-strengthen-compliant.trycloudflare.com',
         '*.trycloudflare.com' // <-- ADD THIS WILDCARD
     ], // allow all LocalTunnel subdomains
     hmr: {

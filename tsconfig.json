@@ -8,7 +8,9 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["vite/client"]
+    "types": ["vite/client"],
+    "allowImportingTsExtensions": true, // <-- FIX: Allows explicit .ts, .tsx imports
+    "resolveJsonModule": true,
   },
   "include": ["src"]
 }

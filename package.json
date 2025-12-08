@@ -1,5 +1,5 @@
 {
-      "name": "User Registration and Location Sharing",
+      "name": "SadakChainAI",
       "version": "0.1.0",
       "private": true,
       "type": "module",
@@ -61,7 +61,7 @@
             "dev": "vite --host 0.0.0.0",
             "build": "vite build",
             "preview": "vite preview --port 3000",
-            "tunnel": "npx localtunnel --port 3000 --subdomain sadakchainai-in",
+            "tunnel": "npx localtunnel --port 5173 --subdomain sadakchainai0",
             "dev:mobile": "concurrently \"npm run dev\" \"wait-on http://localhost:5173 && npm run tunnel\""
       }
 }
