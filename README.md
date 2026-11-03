@@ -145,12 +145,16 @@ Each actor hires the product for different — and connected — jobs.
 - <ins>Pain: no independent condition history → Both, in sequence: AI-scored, blockchain-certified time-series per segment</ins>
   - The "Immutable Training Pool" doubles as a premium risk dataset — RTS history for underwriting, bond pricing, liability premiums. This is where the data asset becomes a product.
 
-## The system itself (civic trust)
 
-**Jobs it is hired for:**
+## The Second-Order Actors
 
-- *"When any party alters, hides, or fabricates the record, help the truth survive anyway."*
+### Auto Companies / Autonomous Mobility (The Intelligence Consumers)
 
-**The Pain and the Solution:**
+- **Their pain:** India's chaotic, rapidly changing roads (unmarked lanes, animals, sudden flooding, debris) are a critical unsolved challenge for global autonomous-driving developers; no labeled ground-truth data exists for unstructured environments.
+- **The tech fit:** the AI side compounds into a **Large Vision Model (LVM)** trained on blockchain-certified data — every anchored report carries an immutable ground-truth label ("Pothole, Severe"), producing a continuously growing, verified training corpus that Western structured-road datasets can't match.
 
-- Every actor distrusts every other; trust is rebuilt person-by-person and lost institution-by-institution.
+### The Data-Market Stakeholders
+
+- **Auto insurers:** pay for real-time, verified road-risk data to underwrite policies — premiums priced on the objective maintenance score of a road network, not actuarial guesswork.
+- **Financial auditors:** pay for immutable proof of work completion to close government contract books.
+- **Why only blockchain can serve them:** these buyers aren't purchasing analysis — they're purchasing *immutability itself*. A risk dataset that anyone could have edited after the fact has no underwriting value; certification is the product feature.
