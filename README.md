@@ -193,6 +193,4 @@ Each actor hires the product for different — and connected — jobs.
 
 - **The AI deflation curve is the compounding engine.** Accuracy 80% → 98% cuts human audit cost, margins expand as the loops spin, which is what makes expansion to new wards affordable instead of linear. (Projections from the business model — the plan, not yet the proof.)
 
-- **Staked funds as balance-sheet credibility.** Contractor stakes sit in smart contracts — the platform doesn't own them, but the Total Value Locked proves the system's solvency and centrality to the financial flow it governs.
-
 - **The alignment test every line above passes:** remove the incentive and the outcome collapses; remove the outcome and the revenue collapses; remove the revenue and nothing funds the loops. No layer in this design is decorative.
