@@ -168,6 +168,12 @@ Each actor hires the product for different — and connected — jobs.
 
 - **Data licensing (Auto / Insurance) ← a certified ground-truth corpus ← AI-verified reporting ← the Model Renaissance loop.** The data stream exists only because blockchain certification makes every report audit-proven — these buyers pay for immutability, not analytics. The same citizen report, monetized a third way.
 
+- **Fine recuperation (Government) ← automatic stake-slashing ← contractor stakes ← the guarantee loop.** - Fines that stayed "on paper" become collected revenue — a new government income stream created by automation rather than taxation.
+
+- **The AI deflation curve is the compounding engine.** Accuracy 80% → 98% cuts human audit cost, margins expand as the loops spin, which is what makes expansion to new wards affordable instead of linear. (Projections from the business model — the plan, not yet the proof.)
+
+- **The alignment test every line above passes:** remove the incentive and the outcome collapses; remove the outcome and the revenue collapses; remove the revenue and nothing funds the loops. No layer in this design is decorative.
+
 - **The wedge into the next AI wave: physical-world vision AI.**
   - India missed the generative wave and the agentic wave — it consumes those foundation models rather than producing them. But the coming wave is **vision AI for the physical world: autonomous driving, robotics, smart-city machines** — and that wave is data-starved in
   a way the previous ones weren't.
@@ -188,9 +194,3 @@ Each actor hires the product for different — and connected — jobs.
    - This platform is the missing proof: if India first makes a public asset class (roads) verifiable at population scale — staking, automatic fines, meritocratic tenders, tokenized participation (CRT/RCT) running on permissioned rails — it doesn't just fix roads; it
      becomes the first working reference model for blockchain governance at nation scale, the "UPI moment" for the tokenisation era, with every other asset class (water, streetlights, construction, health) waiting to be stamped onto the same pattern. But the direction
      is the bet: *identity → payments → verified physical-world state* is a natural DPI sequence, and being first to the third rail is the geopolitical prize.
-
-- **Fine recuperation (Government) ← automatic stake-slashing ← contractor stakes ← the guarantee loop.** - Fines that stayed "on paper" become collected revenue — a new government income stream created by automation rather than taxation.
-
-- **The AI deflation curve is the compounding engine.** Accuracy 80% → 98% cuts human audit cost, margins expand as the loops spin, which is what makes expansion to new wards affordable instead of linear. (Projections from the business model — the plan, not yet the proof.)
-
-- **The alignment test every line above passes:** remove the incentive and the outcome collapses; remove the outcome and the revenue collapses; remove the revenue and nothing funds the loops. No layer in this design is decorative.
