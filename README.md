@@ -162,19 +162,19 @@ Each actor hires the product for different — and connected — jobs.
 
 # Aligning Business Outcomes, Product Outcomes, Incentives & Establishing Feedback Loops
 
-- **SaaS subscription (Government) ← verified prioritization ← citizen reporting incentives (CRT) ← the Civic Renaissance loop.** The state pays for a Road Trust Score heatmap it can defend — but the heatmap only exists if citizens keep reporting, and citizens only report because CRT makes it worth their while. The revenue line rests on a token loop.
+- <ins>**SaaS subscription (Government) ← verified prioritization ← citizen reporting incentives (CRT) ← the Civic Renaissance loop.**</ins> The state pays for a Road Trust Score heatmap it can defend — but the heatmap only exists if citizens keep reporting, and citizens only report because CRT makes it worth their while. The revenue line rests on a token loop.
 
-- **Transaction fees (Contractors) ← instant trustless payment ← contractor staking ← the enforcement loop.** The percentage cut on smart-contract payment releases is paid gladly — the alternative is 3–6 month payment cycles and a 15–20% financing drag. The fee is priced against the pain it removes, not levied as a tax.
+- <ins>**Transaction fees (Contractors) ← instant trustless payment ← contractor staking ← the enforcement loop.**</ins> The percentage cut on smart-contract payment releases is paid gladly — the alternative is 3–6 month payment cycles and a 15–20% financing drag. The fee is priced against the pain it removes, not levied as a tax.
 
-- **Data licensing (Auto / Insurance) ← a certified ground-truth corpus ← AI-verified reporting ← the Model Renaissance loop.** The data stream exists only because blockchain certification makes every report audit-proven — these buyers pay for immutability, not analytics. The same citizen report, monetized a third way.
+- <ins>**Data licensing (Auto / Insurance) ← a certified ground-truth corpus ← AI-verified reporting ← the Model Renaissance loop.**</ins> The data stream exists only because blockchain certification makes every report audit-proven — these buyers pay for immutability, not analytics. The same citizen report, monetized a third way.
 
-- **Fine recuperation (Government) ← automatic stake-slashing ← contractor stakes ← the guarantee loop.** - Fines that stayed "on paper" become collected revenue — a new government income stream created by automation rather than taxation.
+- <ins>**Fine recuperation (Government) ← automatic stake-slashing ← contractor stakes ← the guarantee loop.**</ins> - Fines that stayed "on paper" become collected revenue — a new government income stream created by automation rather than taxation.
 
-- **The AI deflation curve is the compounding engine.** Accuracy 80% → 98% cuts human audit cost, margins expand as the loops spin, which is what makes expansion to new wards affordable instead of linear. (Projections from the business model — the plan, not yet the proof.)
+- <ins>**The AI deflation curve is the compounding engine.**</ins> Accuracy 80% → 98% cuts human audit cost, margins expand as the loops spin, which is what makes expansion to new wards affordable instead of linear. (Projections from the business model — the plan, not yet the proof.)
 
-- **The alignment test every line above passes:** remove the incentive and the outcome collapses; remove the outcome and the revenue collapses; remove the revenue and nothing funds the loops. No layer in this design is decorative.
+- <ins>**The alignment test every line above passes:**</ins> remove the incentive and the outcome collapses; remove the outcome and the revenue collapses; remove the revenue and nothing funds the loops. No layer in this design is decorative.
 
-- **The wedge into the next AI wave: physical-world vision AI.**
+- <ins>**The wedge into the next AI wave: physical-world vision AI.**</ins>
   - India missed the generative wave and the agentic wave — it consumes those foundation models rather than producing them. But the coming wave is **vision AI for the physical world: autonomous driving, robotics, smart-city machines** — and that wave is data-starved in
   a way the previous ones weren't.
 
@@ -184,7 +184,7 @@ Each actor hires the product for different — and connected — jobs.
 
   - Not a claim the pilot proves — the strategic bet the whole loop points at: the country that certifies physical-world ground truth first holds the data layer of the next wave.
 
-- **The DPI second act: India as the first successful blockchain-governance model at scale.**
+- <ins>**The DPI second act: India as the first successful blockchain-governance model at scale.**</ins>
    - India already proved this playbook once — Aadhaar gave every citizen an *identity rail*, UPI gave every citizen a *money rail*; both were public-adjacent, state-championed, deliberately kept non-speculative (UPI isn't money — it *moves* money), and the market
      built fortunes on top of them. The next rail in that lineage is *verified physical-world state* — a tamper-evident record of public assets that money and accountability can flow against. And the timing converges with the **tokenisation wave** now gaining pace
      globally
